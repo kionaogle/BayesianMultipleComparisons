@@ -2,14 +2,6 @@
 # for R2Bugs packages
 ###############################################################################
 
-#Get the command line arguments
-args<-commandArgs(TRUE)
-print(as.numeric(args))
-print(args)
-
-# Make sure the input is numeric
-sim <- as.numeric(args)
-
 # This was a function but that is not needed 
 print(paste0("multcomp function call ", sim, " started."))
 
@@ -67,12 +59,8 @@ for(i in 1:30){
   }
 }
 
-#create data list; set d as matrix
-print("Load example data")
-fileload=paste0("datasets/Example2_", sim, ".Rdata")
-load(file=fileload) # load parm.sets
 dat1 <- list(Y=as.matrix(d), Ndog=nrow(d), Ntrial=ncol(d), xa=xa, xs=xs, pairID = pairID, Ncomp = Ncomp)
-datain <- list(Y=parm.sets$Y, Ndog=nrow(d), Ntrial=ncol(d), xa=parm.sets$xa, xs=parm.sets$xs, pairID = pairID, Ncomp = Ncomp)
+datain <- dat1
 print(paste0(fileload, " loaded."))
 
 # initials
@@ -95,9 +83,9 @@ jm.nh <- jags.model(file = "models/R_model_dogs_NH.R", data = datain, inits = ch
 ################################## Added by MKF ###############################
 # 8/31/2018
 # Burn In
-jm.hb.names <- c(variable.names(jm.hb), "deviance", "lpd")
-jm.cp.names <- c(variable.names(jm.cp), "deviance", "lpd")
-jm.nh.names <- c(variable.names(jm.nh), "deviance", "lpd")
+jm.hb.names <- c(variable.names(jm.hb), "deviance")
+jm.cp.names <- c(variable.names(jm.cp), "deviance")
+jm.nh.names <- c(variable.names(jm.nh), "deviance")
 
 load.module("dic")
 
@@ -119,7 +107,7 @@ codahb =coda.samples(jm.hb,variable.names=jm.hb.names,
                   n.iter=n.itersrun, thin=thinint)
 }
 )
-filename <- paste0("output/jm_hb_", sim, ".Rdata")
+filename <- paste0("output/jm_hb_.Rdata")
 save(codahb, file = filename)
 print(runtime.hb)
 rm(list=c("codahb"))
@@ -137,7 +125,7 @@ codacp =coda.samples(jm.cp,variable.names=jm.cp.names,
                   n.iter=n.itersrun, thin=thinint)
 }
 )		
-filename <- paste0("output/jm_cp_", sim, ".Rdata")
+filename <- paste0("output/jm_cp_.Rdata")
 save(codacp, file = filename)	
 print(runtime.cp)
 rm(list=c("codacp"))
@@ -156,8 +144,6 @@ codanh =coda.samples(jm.nh,variable.names=jm.nh.names,
                   n.iter=n.itersrun, thin=thinint)
 }
 )
-filename <- paste0("output/jm_nh_", sim, ".Rdata")	
+filename <- paste0("output/jm_nh_.Rdata")	
 save(codanh, file = filename)
 print(runtime.nh)			  
-
-print(paste0("Model ", sim, " done."))
