@@ -5,6 +5,7 @@
 # We'll assume that this model is the focal model and that we wish to make 
 # inferences about dogs such that we computed Ndog*(Ndog-1)/2 pairwise comparisons
 # for each of the two parameters (alpha and beta)
+
 data{
   for(i in 1:Ndog){
     for(t in 1:Ntrial){
@@ -43,12 +44,12 @@ model{
   mu.alpha <- -exp(mu.log.alpha)
   mu.beta <- -exp(mu.log.beta)
   
-  # Pairwise comparisons of alpha and betas:
-  # Pairwise comparisons of species:
-  # Compute for each species pair (n = Ncomp), for each of 2 (k loop) variables:
+  # Pairwise comparisons among dogs of alpha and beta:
   for(j in 1:Ncomp){
     alpha.diff[j] <- alpha[pairID[j,1]] - alpha[pairID[j,2]]
     beta.diff[j] <- beta[pairID[j,1]] - beta[pairID[j,2]]
+    # Posterior means of the quantities below give Bayesian 
+    # p-values for each pairwise comparison
     p.alpha[j] <- step(alpha.diff[j])
     p.beta[j] <- step(beta.diff[j])
   }

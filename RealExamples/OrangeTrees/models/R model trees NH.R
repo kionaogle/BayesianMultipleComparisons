@@ -4,7 +4,7 @@ model{
   for(i in 1:N){
     # Normal likelihood for circumference data (Y)
     Y[i] ~ dnorm(mu[i], tau)
-    # Pointwise predictive density
+    # log pointwise density
     lpd[i] <- logdensity.norm(Y[i], mu[i], tau)
     # let b[1,i] = Ymax[i] (maximum circumference)
     # let b[2,i] = Ymin[i] (circumference at time of planting)

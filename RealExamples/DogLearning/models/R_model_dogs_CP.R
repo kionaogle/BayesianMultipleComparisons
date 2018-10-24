@@ -1,6 +1,8 @@
-# Complete pooling version of the dock shock model.
+# Complete pooling version of the Dog Learning model.
 # This model is very similar to the original BUGS example (Example Vol I): 
 # Dogs: loglinear model for binary data. But, slight modifications to priors.
+# See the HB model version for additional comments/explanations.
+
 data{
   for(i in 1:Ndog){
     for(t in 1:Ntrial){

@@ -1,4 +1,6 @@
-# Non-hierarchical version of dog shock model with dog-specific parameters
+# Non-hierarchical version of Dog learning model with dog-specific parameters
+# See the HB model version for additional comments/explanations.
+
 data{
   for(i in 1:Ndog){
     for(t in 1:Ntrial){
@@ -20,8 +22,8 @@ model{
       lpd[i,t] <- log(p[i,t])*y[i,t] + log(1-p[i,t])*(1-y[i,t])      
     }
     
-    # Vague, non-heirarchical priors for log-scale parameters, and back-transform
-    # to original parameter scale, thus obeying domain for alpha and beta
+    # Vague, non-hierarchical priors for log-scale, dog-level parameters; back-
+    # transform to original parameter scale, thus obeying domain for alpha and beta
     log.alpha[i] ~ dnorm(0, 0.0001)
     log.beta[i] ~ dnorm(0, 0.0001)
     alpha[i] <- -exp(log.alpha[i])

@@ -3,7 +3,7 @@ model{
   for(i in 1:N){
     # Normal likelihood for circumference data (Y)
     Y[i] ~ dnorm(mu[i], tau)
-    # Pointwise predictive density
+    # log pointwise density
     lpd[i] <- logdensity.norm(Y[i], mu[i], tau)
     # let b[1,i] = Ymax[i] (maximum circumference)
     # let b[2,i] = Ymin[i] (circumference at time of planting)
@@ -42,6 +42,8 @@ model{
   for(j in 1:Ncomp){
     for(p in 1:Nparms){
       b.diff[j,p] <- b[p,pairID[j,1]] - b[p,pairID[j,2]]
+      # Posterior means of the quantities below give Bayesian 
+      # p-values for each pairwise comparison
       p.b[j,p] <- step(b.diff[j,p])
     }
   }
