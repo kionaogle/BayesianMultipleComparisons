@@ -7,3 +7,4 @@ A project aimed at identifying the need to account for multiple comparisons in h
 Supplemental materials for Ogle *et al. (in prep)*.
 
 
+# Explanation of folder structure and associated files
