@@ -52,25 +52,6 @@ nhits <- 200000
 nhthin <- 100
 
 
-
-
-n.chains <- 3
-n.burnin <- 100
-adaptits <- 1000
-
-hbn.burnin <- 100
-hbits <- 2000
-hbthin <- 1
-
-cpn.burnin <- 100
-cpits <- 2000
-cpthin <- 1
-
-nhn.burnin <- 100
-nhits <- 2000
-nhthin <- 1
-
-
 ###############################################################################
 # Load data and run the HB, CP, and NH models
 ###############################################################################

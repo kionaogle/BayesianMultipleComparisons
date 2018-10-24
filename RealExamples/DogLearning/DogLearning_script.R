@@ -96,16 +96,16 @@ for(i in 1:30){
 datain <- list(Y=as.matrix(d), Ndog=nrow(d), Ntrial=ncol(d), xa=xa, xs=xs, pairID = pairID, Ncomp = Ncomp)
 
 # Initials for HB model:
-initsHB <-list(list(mu.log.alpha = -1, mu.log.beta = -1, tau.log.beta = 10, tau.log.alpha = 10),
+initsHB <- list(list(mu.log.alpha = -1, mu.log.beta = -1, tau.log.beta = 10, tau.log.alpha = 10),
                  list(mu.log.alpha = 1, mu.log.beta = 0, tau.log.beta = 20, tau.log.alpha = 50),
                  list(mu.log.alpha = -.1, mu.log.beta = .8, tau.log.beta = 1, tau.log.alpha = 5))
                  
-initsNH=list(list(log.alpha = runif(n=Ndog, min = -1.5, max = -0.5), log.beta = runif(n=Ndog,min = -1.5, max = -0.5)),
+initsNH <- list(list(log.alpha = runif(n=Ndog, min = -1.5, max = -0.5), log.beta = runif(n=Ndog,min = -1.5, max = -0.5)),
                list(log.alpha = runif(n=Ndog, min = -2.5, max = -1.5), log.beta = runif(n=Ndog,min = -2.5, max = -1.5)),
                list(log.alpha = runif(n=Ndog, min = -4, max = -3), log.beta = runif(n=Ndog,min = -1, max = -0.1)))
                
 # Initials for CP model:
-initsCP <-list(list(log.alpha = -1, log.beta = -1),
+initsCP <- list(list(log.alpha = -1, log.beta = -1),
                list(log.alpha = 1, log.beta = 0),
                list(log.alpha = -.1, log.beta = .8))
 
