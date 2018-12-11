@@ -16,3 +16,6 @@ A master R script file is located within each example folder (e.g., *AllometricS
 The master R script files call model files that have been set-up for each of the model variants (HB, CP, and NH). Users can find the model files in the **models** subfolder that is contained within each of the example subfolders (e.g., *.../DogLearning/models*).
 
 Each example sufolder also contains a subfolder with the data (*.../data*) and a subfolder (*.../source*) with the source code to compute PPI, which is called from the master R script; some examples subfolders may also contain a subfolder with initials used to initialize the JAGS models (e.g., *.../inits*), and all example subfolders contain an output (*.../output*) subfolder for storing results from the JAGS simulations upon executing the master R scripts (as posted, the output subfolders do not contain data, just a README file).
+
+
+[![DOI](https://zenodo.org/badge/153157527.svg)](https://zenodo.org/badge/latestdoi/153157527)
